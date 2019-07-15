@@ -9,6 +9,8 @@ struct runnable : std::false_type {
 
 };
 
+/*std::void_t <typename std::is_same <func_i, decltype(std::declval <class_i>().run(std::declval <args>()...))>::type>*/ //requieres static or non static member function run() that matches the return and parameter types of func_i
+
 template <class class_i, class func_i, class... args>
 struct runnable <class_i, func_i(args...), std::void_t <typename std::is_same <func_i, decltype(std::declval <class_i>().run(std::declval <args>()...))>::type>> : std::true_type {
 
@@ -39,7 +41,8 @@ struct R {    static void run () { puts("R"); } }; //    runnable
 struct Q {           void run () { puts("Q"); } }; // no runnable
 struct T {           void run_() { puts("T"); } }; // no runnable
 
-//requieres static
+/*decltype( type::run, void())*/ //requieres static member function run()
+/*decltype(&type::run, void())*/ //requieres static or non static member function run()
 
 template <class type>
 decltype(type::run, void()) run(type&& object) {
@@ -66,7 +69,8 @@ int main() {
 template <class class_i, class = void>
 struct runnable : std::false_type {};
 
-// requieres static
+/*std::void_t <decltype( class_i::run)>*/ //requieres static member function run()
+/*std::void_t <decltype(&class_i::run)>*/ //requieres static or non static member function run()
 
 template <class class_i>
 struct runnable <class_i, std::void_t <decltype(class_i::run)>> : std::true_type {
