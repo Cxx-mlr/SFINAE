@@ -19,9 +19,9 @@ struct Q {           void run (int, int) { } };
 struct T {           void run (int, int, int) { } };
 
 int main() {
-    if constexpr (runnable <R, void(int)>::value)           { puts("R"); }
+    if constexpr (runnable <R, void(int)>::value          ) { puts("R"); }
 
-    if constexpr (runnable <Q, void(int, int)>::value)      { puts("Q"); }
+    if constexpr (runnable <Q, void(int, int)>::value     ) { puts("Q"); }
 
     if constexpr (runnable <T, void(int, int, int)>::value) { puts("T"); }
         
@@ -52,7 +52,9 @@ void run(...) {
 
 int main() {
     run(R{});
+    
     run(Q{});
+    
     run(T{});
     
     // R
