@@ -51,11 +51,7 @@ void run(...) {
 
 
 int main() {
-    run(R{});
-    
-    run(Q{});
-    
-    run(T{});
+    run(R{});  run(Q{});  run(T{});
     
     // R
     return 0;
