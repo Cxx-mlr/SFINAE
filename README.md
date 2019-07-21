@@ -15,11 +15,6 @@ struct R {    static void run () { } }; //    runnable
 struct Q {           void run () { } }; // no runnable
 struct T {           void run_() { } }; // no runnable
 
-template <class type>
-decltype(auto) run(type&& object) {
-    return object.run();
-}
-
 int main() {
     if constexpr (runnable <Q>::value) { putchar('a'); }
 
