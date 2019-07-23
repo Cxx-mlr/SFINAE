@@ -32,10 +32,6 @@ int main() {
 ```cpp
 // example2
 
-struct R {    static void run () { puts("R"); } }; //    runnable
-struct Q {           void run () { puts("Q"); } }; // no runnable
-struct T {           void run_() { puts("T"); } }; // no runnable
-
 template <class type>
 decltype(type::run, void()) run(type&& object) {
     object.run();
@@ -44,6 +40,9 @@ decltype(type::run, void()) run(type&& object) {
 void run(...) {
 }
 
+struct R {    static void run () { puts("R"); } }; //    runnable
+struct Q {           void run () { puts("Q"); } }; // no runnable
+struct T {           void run_() { puts("T"); } }; // no runnable
 
 int main() {
     run(R{});  run(Q{});  run(T{});
